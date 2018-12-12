@@ -1,0 +1,92 @@
+{% extends "home/base-home.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}"/>
+{% endblock %}
+{% block headjavascript %}
+    <script src="{{ asset('js/slideout.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="loader"></div>
+    <div class="text-body">
+        <div id="qlikEmbedContainer">
+            <my-slideout is-open="slideOutMenuIsOpen" panel-selector="'#slider-panel'"
+                         menu-selector="'#slider-menu'">
+                <div id="slider-menu" class="menu ">
+                    <div class="container-fluid">
+                        <div ui-view="msh-header"></div>
+                    </div>
+                </div>
+                <div id="slider-panel" class="panel drop-shadow-left">
+                    <div class="container-fluid">
+                        <i id="slide-button" ng-click="slideOutMenuIsOpen = !slideOutMenuIsOpen"
+                           class="fa fa-2x fa-arrow-circle-left"></i>
+                        <div ui-view="msh-menu"></div>
+                        <section ui-view="msh-main"></section>
+                    </div>
+                </div>
+            </my-slideout>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        try {
+            var qlik_ticket_from_authentication = '{{ ticket }}';
+            var qlik_embed_language = 'es';
+            var embed_config = {
+                host: '{{ host }}',
+                protocol: '{{ protocol }}',
+                prefix: '{{ prefix }}',
+                extension_name: '{{ extension_name }}',
+                default_language: 'es',
+                environment: '{{ extension_environment }}',
+                start_state: '{{ start_state }}',
+            };
+
+            function qlikEmbedGetCookieLanguage() {
+                if (qlik_embed_language && "" != qlik_embed_language) return qlik_embed_language;
+                var a = embed_config.default_language;
+                if (document.cookie) {
+                    var b = "; " + document.cookie, c = b.split("; _culture=");
+                    2 == c.length && (a = c.pop().split(";").shift().toUpperCase())
+                }
+                return a
+            }
+
+            function qlikEmbedRequestTicket(a) {
+                var b = embed_config.protocol + "://" + embed_config.host + embed_config.prefix + "resources/img/core/dark_noise_16x16.png?qlikTicket=" + qlik_ticket_from_authentication,
+                    c = document.createElement("img"), d = document.createAttribute("src"),
+                    e = document.createAttribute("style");
+                d.value = b, e.value = "height: 1px; width: 1px; opacity: 0;", c.setAttributeNode(d), c.setAttributeNode(e), document.body.appendChild(c), c.onload = a
+            }
+
+
+            function qlikEmbedLoadConfigAndKickstart() {
+                var a = embed_config.protocol + "://" + embed_config.host + embed_config.prefix + "extensions/" + embed_config.extension_name;
+                embed_config.root && (a = embed_config.root);
+                var b = document.createElement("script");
+                b.type = "text/javascript", b.src = a + "/config/config.js", document.body.appendChild(b), b.onload = function (b) {
+                    senseConnection.setEnvironment(embed_config), senseConnection.setUserLanguage(qlikEmbedGetCookieLanguage()),  senseConnection.kickStart(a)
+                }
+            }
+
+            qlikEmbedRequestTicket(qlikEmbedLoadConfigAndKickstart);
+        } catch (e) {
+            if (window.console) {
+                console.error('Could not retrieve the QS charts from the server.', e);
+            }
+        }
+    </script>
+    <script>
+        // page loader
+        $(function () {
+            function show_popup() {
+                $(".loader").hide();
+            }
+            window.setTimeout(show_popup, 4000); // 4 seconds
+        });
+    </script>
+{% endblock %}

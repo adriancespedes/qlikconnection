@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>SORIGUÉ VC ANALYTICS</title>
+    <!-- Bootstrap -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i"
+          rel="stylesheet">
+    <!-- jquery ui  -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
+    <!-- FontAwesome CSS -->
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('js/html5shiv.min.js') }}"></script>
+    <script src="{{ asset('js/respond.min.js') }}"></script>
+    <![endif]-->
+    {% block headjavascript %}{% endblock %}
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- header-section-->
+    <div class="header-wrapper">
+        <!-- header-section-->
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-2 col-md-3 col-sm-3 col-12">
+                        <div class="logo"><a href="/"><img src="{{ asset('images/logo.jpg') }}" alt=""></a></div>
+                    </div>
+                    <div class="col-xl-9 col-lg-10 col-md-9 col-sm-12 col-12">
+                        <!-- navigations-->
+                        <div class="navigation">
+                            <div id="navigation">
+                                <ul>
+                                    <li class="active"><a href="/">Home</a></li>
+                                    <li class="active"><a href="/dashboards">Dashboards</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.navigations-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. header-section-->
+    <!-- tour-service -->
+    <div class="space-medium">
+        <div class="container">
+            {% block body %} {% endblock %}
+        </div>
+    </div>
+    <!-- /.tour-service -->
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row ">
+                <!-- footer-logo -->
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 ">
+                    <div class="ft-img"><img src="{{ asset('images/logo.jpg') }}" alt=""></div>
+                </div>
+                <!-- /.footer-logo -->
+                <!-- footer-links -->
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 ">
+                    <div class="footer-widget ">
+                        <h3 class="footer-title ">Links</h3>
+                        <ul class="angle list-none">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/dashboards">Dashboards</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.footer-links -->
+                <!-- footer-post -->
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 ">
+                    <div class="footer-widget">
+                        <h3 class="footer-title">Contact</h3>
+                        <div class="ft-contact-info"><span class="ft-contact-icon"><i
+                                        class="fa fa-envelope "></i></span> <a href="mailto:info@example.com"
+                                                                               class="ft-contact-text">info@example.com</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.footer-post -->
+            </div>
+            <!-- tiny-footer -->
+        </div>
+        <div class="tiny-footer ">
+            <div class="container ">
+                <div class="row ">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center ">
+                        <p>© Copyright 2018</p>
+                    </div>
+                </div>
+                <!-- /. tiny-footer -->
+            </div>
+        </div>
+    </div>
+    <!-- /.footer -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="search-form">
+                            <input type="text" class="form-control" placeholder="Find here">
+                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">close</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.Modal -->
+    <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/menumaker.js') }}"></script>
+    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('js/sticky-header.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/date.js') }}"></script>
+    <script src="{{ asset('js/return-to-top.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+</div>
+</body>
+</html>
